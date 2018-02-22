@@ -29,6 +29,7 @@ for F in range(NUM_FILES):
     FILE = FILE_LIST[F]
     dataset = np.load(FILE)
     dataset = dataset[:int(TOTAL_LIMIT/NUM_FILES)]
+    dataset = np.multiply(dataset.astype(np.float32), 1.0 / 255.0)
     test_items = [[item, F] for item in dataset[:int(TEST_RATIO*len(dataset))]]
     train_items = [[item, F] for item in dataset[int(TEST_RATIO*len(dataset)):]]
     TEST.extend(test_items)
@@ -51,7 +52,7 @@ for item in TEST:
 np.save("QD_TRAIN_IMAGES.npy", np.array(TRAIN_IMAGES));
 np.save("QD_TRAIN_LABELS.npy", np.array(TRAIN_LABELS));
 np.save("QD_TEST_IMAGES.npy", np.array(TRAIN_IMAGES));
-np.save("QD_TESTLABELS.npy", np.array(TEST_LABELS));
+np.save("QD_TEST_LABELS.npy", np.array(TEST_LABELS));
 
         
         
