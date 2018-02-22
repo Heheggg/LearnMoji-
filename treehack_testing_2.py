@@ -8,6 +8,8 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 
+DIR = "QD-train/" # input directory
+
 tf.logging.set_verbosity(tf.logging.INFO)
 
 
@@ -113,10 +115,10 @@ def main(unused_argv):
   eval_data = mnist.test.images  # Returns np.array
   eval_labels = np.asarray(mnist.test.labels, dtype=np.int32)
   '''
-  train_data = np.load("QD_TRAIN_IMAGES.npy") # np.array
-  train_labels = np.asarray(np.load("QD_TRAIN_LABELS.npy"), dtype=np.int32)
-  eval_data = np.load("QD_TEST_IMAGES.npy") # np.array
-  eval_labels = np.asarray(np.load("QD_TEST_LABELS.npy"), dtype=np.int32)
+  train_data = np.load(DIR + "QD_TRAIN_IMAGES.npy") # np.array
+  train_labels = np.asarray(np.load(DIR + "QD_TRAIN_LABELS.npy"), dtype=np.int32)
+  eval_data = np.load(DIR + "QD_TEST_IMAGES.npy") # np.array
+  eval_labels = np.asarray(np.load(DIR + "QD_TEST_LABELS.npy"), dtype=np.int32)
   
   # Create the Estimator
   mnist_classifier = tf.estimator.Estimator(

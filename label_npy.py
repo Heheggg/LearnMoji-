@@ -2,6 +2,8 @@ import numpy as np
 import pickle
 
 # Determine the files needed for processing
+DIR = "QD-data/" # Directory Path
+OUT_DIR = "QD-train/" # Output Path
 FILE_LIST = ["aircraftCarrier.npy"]
 NUM_FILES = len(FILE_LIST)
 
@@ -27,7 +29,7 @@ TEST = []
 
 for F in range(NUM_FILES):
     FILE = FILE_LIST[F]
-    dataset = np.load(FILE)
+    dataset = np.load(DIR+FILE)
     dataset = dataset[:int(TOTAL_LIMIT/NUM_FILES)]
     dataset = np.multiply(dataset.astype(np.float32), 1.0 / 255.0)
     test_items = [[item, F] for item in dataset[:int(TEST_RATIO*len(dataset))]]
@@ -49,10 +51,10 @@ for item in TEST:
 
 
 # Save the files as .npy files (for use in algo)
-np.save("QD_TRAIN_IMAGES.npy", np.array(TRAIN_IMAGES));
-np.save("QD_TRAIN_LABELS.npy", np.array(TRAIN_LABELS));
-np.save("QD_TEST_IMAGES.npy", np.array(TRAIN_IMAGES));
-np.save("QD_TEST_LABELS.npy", np.array(TEST_LABELS));
+np.save(OUT_DIR + "QD_TRAIN_IMAGES.npy", np.array(TRAIN_IMAGES));
+np.save(OUT_DIR + "QD_TRAIN_LABELS.npy", np.array(TRAIN_LABELS));
+np.save(OUT_DIR + "QD_TEST_IMAGES.npy", np.array(TRAIN_IMAGES));
+np.save(OUT_DIR + "QD_TEST_LABELS.npy", np.array(TEST_LABELS));
 
         
         
